@@ -42,7 +42,7 @@ module Boom
         self.is_visible = true
       end
 
-      def show
+      def show!
         self.show
         self.save
       end
