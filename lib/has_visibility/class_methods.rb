@@ -1,5 +1,4 @@
 require 'has_visibility/instance_methods'
-require 'has_visibility/singleton_methods'
 
 module HasVisibility
   def self.included(base)
@@ -10,7 +9,8 @@ module HasVisibility
     def has_visibility
       class_eval do
         include HasVisibility::InstanceMethods
-        extend HasVisibility::SingletonMethods
+        named_scope :visible, :conditions => { :is_visible => true }
+        named_scope :hidden, :conditions => { :is_visible => false }
       end
     end
   end
